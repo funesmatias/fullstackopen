@@ -1,0 +1,34 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    
+    Note right of browser:  El servidor responde con el código de estado HTTP 302
+
+    server-->>browser: El servidor solicita al navegador una nueva solicitud HTTP GET
+    deactivate server
+
+
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: Codigo HTML
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.CSS
+    activate server
+    server-->>browser: main.css
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: main.js
+    deactivate server
+
+    Note right of browser: El servidor no procesa el data.json
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.json
+    activate server
+    server-->>browser: [{content:"test", date: "2024-01-11}. ...]
+    deactivate server
