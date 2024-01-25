@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    note left of browser: El usuario crea una nueva note en la página y utiliza el boton "Save"
+    note over browser: Posteriormente se actualiza el DOM, convirtiendo una nueva nota a json
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+
+    note right of server: El servidor agrega una nueva nota a la pagina
+
+    server-->>browser: HTML status code 201 Created
+    deactivate server
